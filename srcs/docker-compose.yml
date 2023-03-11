@@ -1,15 +1,11 @@
-# 도커 컴포즈의 버전을 명시한다. 1.27.4 버전부터는 버전을 명시하지 않아도 된다.
-# 하지만, 버전을 명시하는 것을 권장한다.
-version: "3.7"
+# srcs/docker-compose.yml
+
+version: "3.8"
 
 services:
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    build: requirements/nginx
+    container_name: nginx
     ports:
-      - "80:80"
-      - "443:443"
-    command: ["nginx", "-g", "daemon off;"]
-
-  mariadb:
+      - 443:443
+    restart: always
