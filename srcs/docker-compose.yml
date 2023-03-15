@@ -20,10 +20,25 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     restart: always
+    depends_on:
+      - mariadb
     volumes:
       - wp_volume:/var/www/html/wordpress
     expose:
       - "9000"
+    networks:
+      - inception_network
+
+  mariadb:
+    build: requirements/mariadb
+    container_name: mariadb
+    restart: always
+    volumes:
+      - db_volume:/var/lib/mysql
+    expose:
+      - "3306"
+    env_file:
+      - .env
     networks:
       - inception_network
 
@@ -33,6 +48,12 @@ volumes:
     driver_opts:
       type: volume
       device: /Users/kimjaehwan/jaekim/42seoul/inception/srcs/requirements/tools/wordpress
+      o: bind
+  db_volume:
+    driver: local
+    driver_opts:
+      type: volume
+      device: /Users/kimjaehwan/jaekim/42seoul/inception/srcs/requirements/tools/mariadb
       o: bind
 
 networks:
