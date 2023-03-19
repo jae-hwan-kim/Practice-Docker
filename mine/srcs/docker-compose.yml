@@ -1,15 +1,12 @@
-# srcs/docker-compose.yml
 
 services:
   nginx:
     build: requirements/nginx
     container_name: nginx
     ports:
-      # - 80:80
       - 443:443
     restart: always
     volumes:
-      # - ./requirements/tools/php:/var/www/html
       - wp_volume:/var/www/html/wordpress
     depends_on:
       - wordpress
@@ -35,7 +32,6 @@ services:
     container_name: wordpress
     restart: always
     volumes:
-      # - ./requirements/tools/php:/var/www/html
       - wp_volume:/var/www/html/wordpress
     expose:
       - "9000"
@@ -44,7 +40,6 @@ services:
     env_file:
       - .env
     depends_on:
-      # - mariadb
       mariadb:
         condition: service_healthy
     

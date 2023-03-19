@@ -1,5 +1,5 @@
 up :
-	sudo docker-compose -f ./srcs/docker-compose.yml up -d --build
+	sudo docker-compose -f ./srcs/docker-compose.yml up --build -d
 
 rmi :
 	docker rmi srcs-wordpress srcs-mariadb srcs-nginx
