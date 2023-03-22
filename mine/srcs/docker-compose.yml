@@ -2,6 +2,7 @@
 services:
   nginx:
     build: requirements/nginx
+    image: nginx
     container_name: nginx
     ports:
       - 443:443
@@ -16,6 +17,7 @@ services:
   mariadb:
     init: true
     build: ./requirements/mariadb/
+    image: mariadb
     container_name: mariadb
     restart: always
     expose:
@@ -29,6 +31,7 @@ services:
 
   wordpress:
     build: requirements/wordpress
+    image: wordpress
     container_name: wordpress
     restart: always
     volumes:
@@ -50,14 +53,14 @@ volumes:
      driver: local
      driver_opts:
        type: none
-       device: ./requirements/tools/wordpress
+       device: /home/jaekim/data/wordpress
        o: bind
   db_volume:
      name: db_volume
      driver: local
      driver_opts:
        type: none
-       device: ./requirements/tools/mariadb
+       device: /home/jaekim/data/mariadb
        o: bind
 
 networks:
