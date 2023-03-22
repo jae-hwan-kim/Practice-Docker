@@ -8,10 +8,6 @@ BLU			= 	\033[0;36m
 DFT			= 	\033[0;37m
 
 all: fclean up
-# setup
-
-# setup:
-# 	cd ./srcs/requirements/tools && sudo bash pre_work.sh
 
 up:
 	@mkdir -p $(VOLUME_PATH)/wordpress
@@ -32,12 +28,9 @@ clean:
 	@echo "$(RED)>>> docker stop and remove volume, networks and caches$(DFT)"
 
 fclean: clean
-#	@rm -rf ./srcs/requirements/tools/mariadb/*
-#	@rm -rf ./srcs/requirements/tools/wordpress/*
 	@sudo rm -rf $(VOLUME_PATH)/mariadb
 	@sudo rm -rf $(VOLUME_PATH)/wordpress
 	@echo "$(RED)>>> remove your volume files$(DFT)"
 # remove files from the volumes (you need to fill it)
-# you need to change directory!!! to /home/data/
 
 .PHONY: up down clean fclean
